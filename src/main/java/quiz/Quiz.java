@@ -160,9 +160,9 @@ public class Quiz {
 
         if (ans.equals(getCurrentAnswer())) {
             ++countOfCorrectAnsweredQuestions;
-            currentVerdict = "Верно!";
+            currentVerdict = "Correct!";
         } else {
-            currentVerdict = "Неверно!";
+            currentVerdict = "Incorrect!";
         }
 
         ++countOfAnsweredQuestions;
