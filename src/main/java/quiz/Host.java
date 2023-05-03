@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Host {
     public static void main(String[] args) throws IOException, InterruptedException {
-        Quiz service = new Quiz();
+        Server service = new Server();
         Scanner scanner = new Scanner(System.in);
 
         while (service.hasQuestion()) {

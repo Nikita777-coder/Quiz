@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-public class Quiz {
-    private final static Logger QUIZ_LOGGER = LoggerFactory.getLogger(Quiz.class);
+public class Server {
+    private final static Logger QUIZ_LOGGER = LoggerFactory.getLogger(Server.class);
     private String currentPath;
     private final int COUNT_OF_QUESTIONS = 10;
     private final List<AnswerAndQuestion> questionsAndAnswers;
@@ -139,7 +139,7 @@ public class Quiz {
 
         QUIZ_LOGGER.info("ok filling array with questions and answers");
     }
-    public Quiz() throws IOException, InterruptedException {
+    public Server() throws IOException, InterruptedException {
         countOfAnsweredQuestions = 0;
         countOfCorrectAnsweredQuestions = 0;
         questionsAndAnswers = new ArrayList<>(COUNT_OF_QUESTIONS);
