@@ -1,6 +1,7 @@
-package quiz;
+package quiz.console;
 
-import javax.validation.constraints.NotNull;
+
+import jakarta.validation.constraints.NotNull;
 
 public class Formatter {
     public static void formatQuestion(@NotNull String question) {
