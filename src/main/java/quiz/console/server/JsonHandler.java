@@ -23,9 +23,9 @@ class JsonHandler {
 
         if (jsonObject.get("id") == null) {
             throw new IllegalArgumentException("json str ans hasn't id");
-        } else {
-            id = jsonObject.get("id").getAsInt();
         }
+
+        id = jsonObject.get("id").getAsInt();
 
         if (jsonObject.get("question") == null) {
             throw new IllegalArgumentException(String.format("Json object with id = %d hasn't question ", id));
