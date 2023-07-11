@@ -2,6 +2,8 @@ package quiz.console.server.communicator;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import quiz.console.server.communicator.exception.EmptyResponseException;
+import quiz.console.server.communicator.exception.PageNotFoundRE;
 
 import java.io.IOException;
 import java.net.ProxySelector;
@@ -79,6 +81,20 @@ public class Communicator {
             throw new EmptyResponseException(pathToConnect);
         }
     }
+
+    private void checkHttpResponseCode() {
+        switch (httpResponse.statusCode()) {
+            case 200:
+                return;
+            case 404:
+                log.warn(String.format("Page=%s not found", pathToConnect));
+                throw new PageNotFoundRE("page not found. For more info watch logger messages");
+            case 500:
+                log.error("Server error responses");
+            default:
+                break;
+        }
+    }
     public Communicator() {
         this.pathToConnect = "";
         previousPath = pathToConnect;
@@ -90,9 +106,12 @@ public class Communicator {
         while (flag && countOfReconnections < 20) {
             try {
                 makeRequestAndResponse();
+                checkHttpResponseCode();
                 ans = httpResponse.body();
                 flag = false;
                 log.info("Successful getting of response from current page");
+            } catch (PageNotFoundRE pageNotFoundRE) {
+                ++countOfReconnections;
             } catch (HttpTimeoutException httpTimeoutException) {
                 ++countOfReconnections;
                 log.warn(String.format("Page = %s, time waiting of sending response > 1 second", pathToConnect));

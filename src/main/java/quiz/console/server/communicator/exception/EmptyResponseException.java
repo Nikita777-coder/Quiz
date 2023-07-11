@@ -1,4 +1,4 @@
-package quiz.console.server.communicator;
+package quiz.console.server.communicator.exception;
 
 public class EmptyResponseException extends Exception {
     public EmptyResponseException(String page) {
